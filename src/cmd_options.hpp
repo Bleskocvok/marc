@@ -42,9 +42,9 @@ Options
                      Can be one of: png, jpg, bmp, tga, svg, term
                      If term format is selected, the image will
                      be drawn into the terminal instead of a file.
-                     It's recommended to also specify a maximum
-                     width/height to ensure the resulting image
-                     fits in the terminal.
+                     In that case it's recommended to also specify
+                     a maximum width/height to ensure the resulting
+                     image fits in the terminal.
 )";
 
 void print_usage(const std::string& executable_name) {
