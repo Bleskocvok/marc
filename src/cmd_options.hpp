@@ -37,8 +37,14 @@ Options
   --adjust-colors    Compute colors based on the maximum occupancy of blocks
                      instead of based on block capacity.
   -f <fmt>
-  --output-format <fmt>  The format of the output image.
-                         Can be on of: png, jpg, bmp, tga, svg
+  --output-format <fmt>
+                     The format of the output image.
+                     Can be one of: png, jpg, bmp, tga, svg, term
+                     If term format is selected, the image will
+                     be drawn into the terminal instead of a file.
+                     It's recommended to also specify a maximum
+                     width/height to ensure the resulting image
+                     fits in the terminal.
 )";
 
 void print_usage(const std::string& executable_name) {
@@ -81,6 +87,7 @@ std::optional<ImageFormat> parse_image_format(std::string format_string) {
         { "jpeg", ImageFormat::jpg },
         { "bmp", ImageFormat::bmp },
         { "tga", ImageFormat::tga },
+        { "term", ImageFormat::term },
     };
 
     for (auto& c : format_string) {

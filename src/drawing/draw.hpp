@@ -81,7 +81,8 @@ enum class ImageFormat {
     png,
     jpg,
     bmp,
-    tga
+    tga,
+    term
 };
 
 struct ImageConfig {

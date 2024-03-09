@@ -18,6 +18,7 @@
 #include "drawing/generic.hpp"
 #include "drawing/stb_image.hpp"
 #include "drawing/svg.hpp"
+#include "drawing/term.hpp"
 
 void print_parsing_error(const Status& status) {
     std::cerr << "Error:" << status.line << ":" << status.col << ": " << status.error_message << "\n";
@@ -53,6 +54,7 @@ std::string get_image_extension(ImageFormat format) {
         { ImageFormat::bmp, ".bmp" },
         { ImageFormat::tga, ".tga" },
         { ImageFormat::svg, ".svg" },
+        { ImageFormat::term, ".term" },
     };
     return extensions.at(format);
 }
@@ -118,6 +120,9 @@ void draw_grid(const Grid& grid, ImageConfig& image_config, const CmdOptions& op
 
     if (image_config.format == ImageFormat::svg) {
         GenericDrawer<SvgImage> drawer;
+        drawer(grid, image_config);
+    } else if (image_config.format == ImageFormat::term) {
+        TermDrawer drawer;
         drawer(grid, image_config);
     } else {
         GenericDrawer<StbImage> drawer;
